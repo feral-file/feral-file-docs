@@ -1,24 +1,18 @@
 # Feral File Documents Repository
 
 ## Overview
-This repository serves as a **maintenance document** for managing and structuring various documentation files used across Feral File applications, including the mobile app, website, and TV display app. The files in this repository provide essential agreements, configurations, and content necessary for different features of the platform.
+This repository holds documentation files used by the Feral File mobile app and TV display app: agreements, configurations, and app content.
+
+The website's Learn, About, FAQ and legal pages are not here. They live in `feral-file/ff3` (`data/content/learn/`, `data/content/legal/`) and ship with the site's releases.
 
 ## Impact on Production
-- Any changes made to existing files that are merged into the `main` branch will **directly affect the app and web in the PRD environment**.
-- **Developers must be informed when adding new files** so they can include them in the data loading process for the app and website.
+- Any changes made to existing files that are merged into the `main` branch will **directly affect the app in the PRD environment**.
+- **Developers must be informed when adding new files** so they can include them in the data loading process for the app.
 
 ## Repository Structure
 
 ### **1. agreements/**
-Contains legal and policy-related documents that are loaded as static pages on the app and website. These files include:
-- app data usage
-- app eula
-- app privacy
-- art transfer agreement
-- artist collector rights
-- artist collector term of service
-- web privacy
-- ... (additional legal agreements)
+Legal and policy documents. The app's document viewer loads `ff-app-eula` and `ff-app-privacy` (`{FERALFILE_DOCS_URL}/agreements/<doc>/en_US.md`); identical copies sit in `feral-file/ff-app-docs`. Nothing in the feral-file org's code reads the others (`ff-app-data-usage`, `ff-artist-group-exhibition`, `ff-artist-solo-exhibition`, `ff-artist-migration`, `ff-exhibition-curator`, `ff-collector-rights`).
 
 ### **2. app/**
 Holds various data files used by the **Feral File app**, including:
@@ -34,21 +28,9 @@ This folder contains JSON configuration files that are used by:
 
 These files define app settings and behaviors for different environments.
 
-### **4. docs/**
-This is a legacy folder created earlier in the repository’s lifecycle, and it **cannot be renamed** due to system dependencies. It primarily stores:
-- **Templates for artist and curator contracts**
-
-The templates are structured within `docs/curator-artist-agreement/`, which generate contracts for each exhibition.
-
-### **5. learning/**
-Content for **white papers** and educational materials. Each Markdown file in this directory corresponds to an article in the [**Learn section**](http://feralfile.com/learn) of the Feral File website.
-- Checking how to add a new white paper [here](https://github.com/bitmark-inc/feral-file-docs/blob/main/learning/guidelines.md)
-
 ## Maintenance Notes
 - **agreements/**: Updates to policies or agreements should be reviewed before deployment.
 - **app/**: Only the Feral File app dev team is working on this.
 - **configs/**: Changes here affect mobile and TV applications, requiring careful testing.
-- **docs/**: Since this directory is tied to contract generation, modifications should be handled with caution.
-- **learning/**: New white papers should follow the established Markdown formatting before being published.
 
-For any structural changes, ensure that dependencies across apps and websites are considered before modifying this repository.
+For any structural changes, ensure that dependencies across the apps are considered before modifying this repository.
